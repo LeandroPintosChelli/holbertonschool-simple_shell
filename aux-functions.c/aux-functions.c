@@ -69,7 +69,7 @@ void _puts(char *str)
 }
 
 /**
- * _strcpy - sopy a string
+ * _strcpy - copy a string
  * @dest: a
  * @src: copies the string pointed
  * Return: Always 0.
