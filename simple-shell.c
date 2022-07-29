@@ -4,6 +4,7 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <stdlib.h>
+int _strlen(char *s);
 /**
 * main - Simple shell
 *
