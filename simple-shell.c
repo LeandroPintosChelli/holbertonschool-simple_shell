@@ -32,23 +32,20 @@ int main(void)
 	child = fork();
 	if (child == 0)
 	{
-		if ((command[0][0] != ' ' && command[0][_strlen(command[0])] != ' ') && execve(command[0], command, NULL) == -1)
+		if ((command[0][0] != ' ') && (command[0][_strlen(command[0])] != ' ') && execve(command[0], command, NULL) == -1)
 		{
 			perror("Error");
-			free(tok);
-			free(lineptr);
-			exit(0);
-		}
-		if (child > 0)
-		{
-			wait(&status);
-			free(command[0]);
+/**			free(tok);
+			free(lineptr);*/
+			return (1);
 		}
 	}
+	else
+		wait(&status);
 	}
 /**	write(1, "\n", 1);*/
 	free(lineptr);
-	exit(status);
+	return (0);
 }
 
 /**
