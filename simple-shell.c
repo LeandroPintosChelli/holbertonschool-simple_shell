@@ -9,7 +9,7 @@
 *
 * Return: null
 */
-int main(void)
+void main(void)
 {
 	int child;
 	char *command[16], *tok, *lineptr = NULL;
@@ -42,7 +42,7 @@ int main(void)
 		if (child > 0)
 		wait(&status);
 	}
-	printf("\n");
+	write(1, "\n", 1);
 	free(lineptr);
 	exit(status);
 }
