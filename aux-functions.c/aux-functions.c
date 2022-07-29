@@ -69,24 +69,30 @@ void _puts(char *str)
 }
 
 /**
- * _strcpy - copy a string
- * @dest: a
- * @src: copies the string pointed
- * Return: Always 0.
- */
-char *_strcpy(char *dest, char *src)
+* _strdup - check code
+* @str: duplicate string
+* Return: Always 0
+*/
+char *_strdup(char *str)
 {
-	int i;
-	int j = 0;
+	int s, i;
+	char *c;
 
-	while (*(src + j) != '\0')
+	if (str == NULL)
 	{
-	j++;
+		return (NULL);
 	}
+	s = strlen(str);
+	c = (char *)malloc(s * sizeof(char) + 1);
 
-	for (i = 0; i <= j; i++)
+	if (c == NULL)
 	{
-	*(dest + i) = *(src + i);
+		return (NULL);
 	}
-	return (dest);
+	else
+	{
+	for (i = 0; i < s; i++)
+		c[i] = str[i];
+	}
+	return (c);
 }
