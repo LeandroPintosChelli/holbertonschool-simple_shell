@@ -14,12 +14,11 @@ int main(void)
 {
 	int child;
 	char *command[16], *tok, *lineptr = NULL;
-	size_t i, n;
+	size_t i, n = 0;
 	int status;
 
 	while (1)
 	{
-/**	write(1, "$ ", 2);*/
 	if (getline(&lineptr, &n, stdin) == -1)
 	break;
 	tok = strtok(lineptr, " \t\n\r");
@@ -35,16 +34,14 @@ int main(void)
 		if ((command[0][0] != ' ') && (command[0][_strlen(command[0])] != ' ') && execve(command[0], command, NULL) == -1)
 		{
 			perror("Error");
-/**			free(tok);
-			free(lineptr);*/
 			return (1);
 		}
 	}
 	else
 		wait(&status);
 	}
-/**	write(1, "\n", 1);*/
 	free(lineptr);
+	free(tok);
 	return (0);
 }
 
