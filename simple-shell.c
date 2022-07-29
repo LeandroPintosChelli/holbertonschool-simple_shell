@@ -6,11 +6,10 @@
 #include <stdlib.h>
 /**
 * main - Simple shell
-* @argc: a
-* @argv: v
+*
 * Return: null
 */
-int main(int argc, char *argv[])
+int main(void)
 {
 	pid_t child;
 	char *command[16], *tok, *lineptr = NULL;
