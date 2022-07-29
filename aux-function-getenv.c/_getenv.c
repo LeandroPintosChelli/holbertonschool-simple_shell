@@ -1,4 +1,5 @@
 #include "main.h"
+char *_strdup(char *str);
 
 int main(void);
 /**
@@ -8,6 +9,7 @@ int main(void);
 */
 char *_getenv(const char *name)
 {
+	char *path;
 	int i, j;
 	int status;
 
@@ -24,7 +26,8 @@ char *_getenv(const char *name)
 	}
 	if (status)
 	{
-		return (&environ[i][j + 1]);
+		path = _strdup(&environ[i][j + 1]);
+		return (path);
 	}
 	}
 	return (NULL);
@@ -36,8 +39,34 @@ char *_getenv(const char *name)
 */
 int main(void)
 {
-	printf("PATH : %s\n", _getenv("PATH"));
-	printf("HOME : %s\n", _getenv("HOME"));
-	printf("ROOT : %s\n", _getenv("ROOT"));
+	printf("%s\n", _getenv("PATH"));
 	return (0);
+}
+/**
+* _strdup - check code
+* @str: duplicate string
+* Return: Always 0
+*/
+char *_strdup(char *str)
+{
+	int s, i;
+	char *c;
+
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	s = strlen(str);
+	c = (char *)malloc(s * sizeof(char) + 1);
+
+	if (c == NULL)
+	{
+		return (NULL);
+	}
+	else
+	{
+	for (i = 0; i < s; i++)
+		c[i] = str[i];
+	}
+	return (c);
 }
