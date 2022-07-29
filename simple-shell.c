@@ -35,11 +35,12 @@ int main(void)
 		if ((command[0][0] != ' ' && command[0][_strlen(command[0])] != ' ') && execve(command[0], command, NULL) == -1)
 		{
 			perror("Error");
-			free(tok);
+/**			free(tok);
 			free(lineptr);
-			exit(0);
+			exit(0);*/
+			return (1);
 		}
-		else 
+		if (child > 0)
 		{
 			wait(&status);
 			free(command[0]);
