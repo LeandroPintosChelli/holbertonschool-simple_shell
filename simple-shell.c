@@ -18,7 +18,7 @@ int main(void)
 
 	while (1)
 	{
-	write(1, "$ ", 2);
+/**	write(1, "$ ", 2);*/
 	if (getline(&lineptr, &n, stdin) == -1)
 	break;
 	tok = strtok(lineptr, " \t\n\r");
@@ -42,7 +42,7 @@ int main(void)
 		if (child > 0)
 		wait(&status);
 	}
-	write(1, "\n", 1);
+/**	write(1, "\n", 1);*/
 	free(lineptr);
 	exit(status);
 }
