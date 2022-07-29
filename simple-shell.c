@@ -11,7 +11,7 @@
 */
 int main(void)
 {
-	int child = 0;
+	int child;
 	char *command[16], *tok, *lineptr = NULL;
 	size_t i, n;
 	int status;
@@ -28,7 +28,8 @@ int main(void)
 		tok = strtok(NULL, " \t\n\r");
 	}
 	command[i] = NULL;
-	if (fork() == 0)
+	child = fork();
+	if (child == 0)
 	{
 		if (execve(command[0], command, NULL) == -1)
 		{
