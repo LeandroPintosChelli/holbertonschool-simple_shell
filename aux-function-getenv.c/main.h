@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-int main(void);
+char *_strdup(char *str);
 char *_getenv(const char *name);
 extern char **environ;
 #endif

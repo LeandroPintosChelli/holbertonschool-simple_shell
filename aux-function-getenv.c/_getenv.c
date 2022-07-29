@@ -1,7 +1,5 @@
 #include "main.h"
-char *_strdup(char *str);
 
-int main(void);
 /**
 * _getenv - function to do getenv
 * @name: pointer
@@ -32,16 +30,7 @@ char *_getenv(const char *name)
 	}
 	return (NULL);
 }
-/**
-* main - function
-*
-* Return: 0
-*/
-int main(void)
-{
-	printf("%s\n", _getenv("PATH"));
-	return (0);
-}
+
 /**
 * _strdup - check code
 * @str: duplicate string
