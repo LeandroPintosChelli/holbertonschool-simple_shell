@@ -39,9 +39,12 @@ int main(void)
 			free(lineptr);
 			exit(0);
 		}
+		else 
+		{
+			wait(&status);
+			free(command[0]);
+		}
 	}
-		if (child > 0)
-		wait(&status);
 	}
 /**	write(1, "\n", 1);*/
 	free(lineptr);
