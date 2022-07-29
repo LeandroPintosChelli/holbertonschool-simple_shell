@@ -15,10 +15,10 @@ int main(void)
 	char *command[16], *tok, *lineptr = NULL;
 	size_t i, n;
 	int status;
-  
+
 	while (1)
 	{
-	printf("$ ");
+	write(1, "$ ", 2);
 	if (getline(&lineptr, &n, stdin) == -1)
 	break;
 	tok = strtok(lineptr, " \t\n\r");
@@ -33,7 +33,7 @@ int main(void)
 	{
 		if (execve(command[0], command, NULL) == -1)
 		{
-			perror("execve");
+			perror("Error");
 			free(tok);
 			free(lineptr);
 			exit(0);
