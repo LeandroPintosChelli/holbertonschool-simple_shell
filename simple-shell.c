@@ -11,7 +11,7 @@
 */
 int main(void)
 {
-	int child;
+	int child = 0;
 	char *command[16], *tok, *lineptr = NULL;
 	size_t i, n;
 	int status;
