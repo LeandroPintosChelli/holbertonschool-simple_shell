@@ -31,7 +31,7 @@ int main(void)
 	child = fork();
 	if (child == 0)
 	{
-		if (command[0][0] != ' ' && execve(command[0], command, NULL) == -1)
+		if (command[0][0] != ' ' && command[0][_strlen(command[0])] != ' ' && execve(command[0], command, NULL) == -1)
 		{
 			perror("Error");
 			free(tok);
