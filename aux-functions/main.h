@@ -5,7 +5,7 @@
 #include <string.h>
 int _strlen(char *s);
 void _puts(char *str);
-char *_strcat(char *dest, char *src);
+char *str_concat(char *s1, char *s2);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
 int _putchar(char c);
