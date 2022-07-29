@@ -9,7 +9,7 @@
 *
 * Return: null
 */
-void main(void)
+int main(void)
 {
 	int child;
 	char *command[16], *tok, *lineptr = NULL;
