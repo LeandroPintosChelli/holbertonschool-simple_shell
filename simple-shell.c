@@ -4,7 +4,12 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <stdlib.h>
-
+/**
+* main - Simple shell
+* @argc: a
+* @argv: v
+* Return: null
+*/
 int main(int argc, char *argv[])
 {
 	pid_t child;
