@@ -11,7 +11,7 @@
 */
 int main(void)
 {
-	pid_t child;
+	int child;
 	char *command[16], *tok, *lineptr = NULL;
 	size_t i, n;
 	int status;
