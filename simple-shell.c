@@ -1,3 +1,4 @@
+#include "main.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -45,4 +46,21 @@ int main(void)
 /**	write(1, "\n", 1);*/
 	free(lineptr);
 	exit(status);
+}
+
+/**
+ * _strlen - string lenght
+ * @s: function that returns the length of a string.
+ * Return: Always 0.
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (*s != '\0')
+	{
+		i++;
+		s++;
+	}
+	return (i);
 }
