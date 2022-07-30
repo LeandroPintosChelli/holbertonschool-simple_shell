@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-int main(int ac, char **av, char **env)
+int main(__attribute__((unused)) int ac, char **av, char **env)
 {
 	char *input = 0;
 	size_t n = 0;
