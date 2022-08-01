@@ -1,6 +1,5 @@
 #include "main.h"
 
-int _strcmp(char *s1, char *s2);
 /**
 * main - simple shell
 * @ac: unused
@@ -22,7 +21,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			free(input);
 			break;
 		}
-		if (strcmp(input, "\n") == 0)
+		if (_strcmp(input, "\n") == 0)
 			continue;
 		input = strtok(input, "\n");
 		if (input && stat(input, &file) == 0)
