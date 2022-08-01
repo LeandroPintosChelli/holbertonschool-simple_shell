@@ -1,12 +1,11 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-
+/**
+* main - simple shell
+* @ac: unused
+* @av: unused
+* @env: unused	
+* Return: 0
+*/
 int main(__attribute__((unused)) int ac, char **av, char **env)
 {
 	char *input = 0;
@@ -22,7 +21,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			free(input);
 			break;
 		}
-		if (_strcmp(input, "\n") == 0)
+		if (strcmp(input, "\n") == 0)
 			continue;
 		input = strtok(input, "\n");
 		if (input && stat(input, &file) == 0)
