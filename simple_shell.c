@@ -3,7 +3,7 @@
 * main - simple shell
 * @ac: unused
 * @av: unused
-* @env: unused	
+* @env: unused
 * Return: 0
 */
 int main(__attribute__((unused)) int ac, char **av, char **env)
