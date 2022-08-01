@@ -21,7 +21,6 @@ int main(void)
 	{
 	if (getline(&lineptr, &n, stdin) == -1)
 		break;
-		free(lineptr);
 	tok = strtok(lineptr, " \t\n\r");
 	for (i = 0; i < 16 && tok != NULL; i++)
 	{
@@ -34,7 +33,7 @@ int main(void)
 	{
 		if ((command[0][0] != ' ') && (command[0][_strlen(command[0])] != ' ') && execve(command[0], command, NULL) == -1)
 		{
-			perror("Error");
+			perror("");
 			free(lineptr);
 			free(tok);
 			return (1);
