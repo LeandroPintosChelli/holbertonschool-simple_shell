@@ -18,12 +18,12 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	{
 		if (getline(&input, &n, stdin) == -1)
 		{
-			free(input);
+
 			break;
 		}
 		if (_strcmp(input, "\n") == 0)
 			continue;
-		input = strtok(input, "\n");
+		input = strtok(input, " \n");
 		if (input && stat(input, &file) == 0)
 		{
 			if (fork() == 0)
@@ -36,7 +36,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		}
 		wait(&status);
 	}
-
+	free(input);
 	return (0);
 }
 
