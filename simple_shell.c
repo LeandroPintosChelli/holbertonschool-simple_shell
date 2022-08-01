@@ -1,4 +1,6 @@
 #include "main.h"
+
+int _strcmp(char *s1, char *s2);
 /**
 * main - simple shell
 * @ac: unused
@@ -20,7 +22,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			free(input);
 			break;
 		}
-		if (_strcmp(input, "\n") == 0)
+		if (strcmp(input, "\n") == 0)
 			continue;
 		input = strtok(input, "\n");
 		if (input && stat(input, &file) == 0)
@@ -37,4 +39,20 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	}
 
 	return (0);
+}
+
+/**
+ * _strcmp - check the code
+ * @s1: a
+ * @s2: Write a function that compares two strings.
+ * Return: Always 0.
+ */
+int _strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
 }
