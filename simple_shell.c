@@ -7,7 +7,7 @@
 * @env: unused
 * Return: 0
 */
-int main(__attribute__((unused)) int ac, char **av, char **env)
+int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char **env)
 {
 	char *input = NULL;
 	int child;
