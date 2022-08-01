@@ -18,7 +18,7 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 
 	while (1)
 	{
-		write(1, "$ ", 2);
+/**		write(1, "$ ", 2);*/
 		if (getline(&input, &n, stdin) == -1)
 			break;
 		tok = strtok(input, " \t\n\r");
