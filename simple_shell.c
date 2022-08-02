@@ -82,11 +82,12 @@ void _env(char **env)
 {
 	size_t len;
 
-	for (; *env; *env++)
+	for (; *env;)
 	{
 		len = strlen(*env);
 		write(1, *env, len);
 		_putchar('\n');
+		*env = *env + 1;
 	}
 }
 
