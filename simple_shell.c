@@ -9,11 +9,11 @@
 int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char **env)
 {
 	char *input = NULL;
-	int child;
 	char *buf[1024];
 	char *tok;
 	size_t i, n = 0;
 	int status = 0;
+	struct stat file;
 
 	while (1)
 	{
@@ -31,23 +31,27 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 			_env(env);
 			continue;
 		}
-		child = fork();
 		if (!buf[0])
 		{
 			free(buf[0]);
 			free(input);
 			return (0);
 		}
-		if (child == 0)
+		if (stat(input, &file) == 0)
 		{
-			if (execve(buf[0], buf, env) == -1)
+			if (fork() == 0)
 			{
-				perror("");
-				return (0);
+				if (execve(buf[0], buf, env) == -1)
+				{
+					perror("");
+					return (0);
+				}
 			}
+			else
+				wait(&status);
 		}
 		else
-			wait(&status);
+			perror("");
 	}
 	free(input);
 	return (0);
