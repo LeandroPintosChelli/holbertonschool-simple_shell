@@ -12,7 +12,6 @@ int main(__attribute__((unused)) int ac, char **env)
 	size_t i, n = 0;
 	int status = 0;
 	int child;
-	struct stat file;
 
 	while (1)
 	{
