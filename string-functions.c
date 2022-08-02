@@ -32,8 +32,8 @@ char *str_concat(char *s1, char *s2)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	a = strlen(s1);
-	b = strlen(s2);
+	a = _strlen(s1);
+	b = _strlen(s2);
 	c = (char *)malloc(sizeof(char) * ((a + b) + 1));
 	if (c == NULL)
 		return (NULL);
@@ -96,7 +96,7 @@ char *_strdup(char *str)
 	{
 		return (NULL);
 	}
-	s = strlen(str);
+	s = _strlen(str);
 	c = (char *)malloc(s * sizeof(char) + 1);
 
 	if (c == NULL)
@@ -108,5 +108,6 @@ char *_strdup(char *str)
 	for (i = 0; i < s; i++)
 		c[i] = str[i];
 	}
+	c[i] = '\0';
 	return (c);
 }

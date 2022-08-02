@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
 * main - simple shell
 * @ac: unused
@@ -10,15 +9,14 @@
 int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char **env)
 {
 	char *input = NULL;
-	int child;
 	char *buf[1024];
 	char *tok;
 	size_t i, n = 0;
 	int status = 0;
+	struct stat file;
 
 	while (1)
 	{
-/**		write(1, "$ ", 2);*/
 		if (getline(&input, &n, stdin) == -1)
 			break;
 		tok = strtok(input, " \t\n\r");
@@ -28,26 +26,32 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 			tok = strtok(NULL, " \t\n\r");
 		}
 		buf[i] = NULL;
-/**		if (_strcmp(input, "\n") == 0)
+		if (_strcmp(input, "env") == 0)
+		{
+			_env(env);
 			continue;
-		input = strtok(input, "\n");*/
-		child = fork();
+		}
 		if (!buf[0])
 		{
 			free(buf[0]);
 			free(input);
 			return (0);
 		}
-		if (child == 0)
+		if (stat(input, &file) == 0)
 		{
-			if (execve(buf[0], buf, env) == -1)
+			if (fork() == 0)
 			{
-				perror("");
-				return (0);
+				if (execve(buf[0], buf, env) == -1)
+				{
+					perror("");
+					return (0);
+				}
 			}
+			else
+				wait(&status);
 		}
 		else
-			wait(&status);
+			perror("");
 	}
 	free(input);
 	return (0);
@@ -67,4 +71,33 @@ int _strcmp(char *s1, char *s2)
 		s2++;
 	}
 	return (*s1 - *s2);
+}
+
+/**
+* _env - print environment
+* @env: pointer to a char
+* Return: void
+*/
+void _env(char **env)
+{
+	size_t len;
+
+	for (; *env; *env++)
+	{
+		len = strlen(*env);
+		write(1, *env, len);
+		_putchar('\n');
+	}
+}
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
 }
