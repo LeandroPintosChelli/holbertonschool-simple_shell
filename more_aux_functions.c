@@ -1,31 +1,5 @@
 #include "main.h"
-/**
-* _which - search a path
-* @str: pointer to char
-* Return: int
-*
-*char *_which(char *str)
-*{
-*	char *path = NULL, *pathdup = NULL, *token, *fullpath;
-*	struct stat st;
-*	
-*	path = _getenv("PATH");
-*	pathdup = _strdup(path);
-*	token = strtok(pathdup, ":");
-*	while (token)
-*	{
-*		fullpath = _str_concat(token, "/");
-*		path = _str_concat(fullpath, str);
-*		if (stat(path, &st) == 0)
-*		{
-*			printf("%s\n", path);
-*			return (path);
-*		}
-*		token = strtok(NULL, ":");
-*	}
-*	return (NULL);
-*}
-*/
+
 /**
 * _getenv - function to do getenv
 * @name: pointer
@@ -67,4 +41,22 @@ char *_getenv(const char *name)
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
+}
+
+/**
+* _env - print environment
+* @env: pointer to a char
+* Return: void
+*/
+void _env(char **env)
+{
+	size_t len;
+
+	for (; *env;)
+	{
+		len = strlen(*env);
+		write(1, *env, len);
+		_putchar('\n');
+		*env = *env + 1;
+	}
 }
