@@ -3,29 +3,29 @@
 * _which - search a path
 * @str: pointer to char
 * Return: int
+*
+*char *_which(char *str)
+*{
+*	char *path = NULL, *pathdup = NULL, *token, *fullpath;
+*	struct stat st;
+*	
+*	path = _getenv("PATH");
+*	pathdup = _strdup(path);
+*	token = strtok(pathdup, ":");
+*	while (token)
+*	{
+*		fullpath = _str_concat(token, "/");
+*		path = _str_concat(fullpath, str);
+*		if (stat(path, &st) == 0)
+*		{
+*			printf("%s\n", path);
+*			return (path);
+*		}
+*		token = strtok(NULL, ":");
+*	}
+*	return (NULL);
+*}
 */
-char *_which(char *str)
-{
-	char *path = NULL, *pathdup = NULL, *token, *fullpath;
-	struct stat st;
-	
-	path = _getenv("PATH");
-	pathdup = _strdup(path);
-	token = strtok(pathdup, ":");
-	while (token)
-	{
-		fullpath = _str_concat(token, "/");
-		path = _str_concat(fullpath, str);
-		if (stat(path, &st) == 0)
-		{
-			printf("%s\n", path);
-			return (path);
-		}
-		token = strtok(NULL, ":");
-	}
-	return (NULL);
-}
-
 /**
 * _getenv - function to do getenv
 * @name: pointer
@@ -55,4 +55,16 @@ char *_getenv(const char *name)
 	}
 	}
 	return (NULL);
+}
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
 }

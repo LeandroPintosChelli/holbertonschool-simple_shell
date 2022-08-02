@@ -1,43 +1,70 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 
-int main(__attribute__((unused)) int ac, char **av, char **env)
+/**
+* main - simple shell
+* @ac: unused
+* @av: unused
+* @env: unused
+* Return: 0
+*/
+int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char **env)
 {
-	char *input = 0;
-	size_t n = 0;
-	int status;
-	struct stat file;
+	char *input = NULL;
+	int child;
+	char *buf[1024];
+	char *tok;
+	size_t i, n = 0;
+	int status = 0;
 
 	while (1)
 	{
-/*		printf("#blas$ ");*/
+/**		write(1, "$ ", 2);*/
 		if (getline(&input, &n, stdin) == -1)
-		{
-			free(input);
 			break;
-		}
-		if (_strcmp(input, "\n") == 0)
-			continue;
-		input = strtok(input, "\n");
-		if (input && stat(input, &file) == 0)
+		tok = strtok(input, " \t\n\r");
+		for (i = 0; i < 1024 && tok != NULL; i++)
 		{
-			if (fork() == 0)
-				execve(input, av, env);
+			buf[i] = tok;
+			tok = strtok(NULL, " \t\n\r");
+		}
+		buf[i] = NULL;
+/**		if (_strcmp(input, "\n") == 0)
+			continue;
+		input = strtok(input, "\n");*/
+		child = fork();
+		if (!buf[0])
+		{
+			free(buf[0]);
+			free(input);
+			return (0);
+		}
+		if (child == 0)
+		{
+			if (execve(buf[0], buf, env) == -1)
+			{
+				perror("");
+				return (0);
+			}
 		}
 		else
-		{
-			perror("");
-/*			printf("%s: No such file or directory\n", av[0]);*/
-			continue;
-		}
-		wait(&status);
+			wait(&status);
 	}
-
+	free(input);
 	return (0);
+}
+
+/**
+ * _strcmp - check the code
+ * @s1: a
+ * @s2: Write a function that compares two strings.
+ * Return: Always 0.
+ */
+int _strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
 }

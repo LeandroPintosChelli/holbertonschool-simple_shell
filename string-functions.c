@@ -50,20 +50,20 @@ char *str_concat(char *s1, char *s2)
 
 /**
  * _strcmp - string compare
- * @a1: a
- * @a2: function that compares two strings.
+ * @s1: a
+ * @s2: function that compares two strings.
  * Return: Always 0.
  */
-int _strcmp(char *a1, char *a2)
+/**int _strcmp(char *s1, char *s2)
 {
-	while (*a1 && *a2 && *a1 == *a2)
+	while (*s1 && *s2 && *s1 == *s2)
 	{
-		a1++;
-		a2++;
+		s1++;
+		s2++;
 	}
-	return (*a1 - *a2);
+	return (*s1 - *s2);
 }
-
+*/
 /**
  * _puts - check the code
  * @str: function that returns the length of a string.
