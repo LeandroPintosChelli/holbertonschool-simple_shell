@@ -46,6 +46,9 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			}
 			continue;
 		}
+		if (pathver(buf[0]) == -1)
+			buf[0] = _which(buf[0]);
+			free(buf[0]);
 		child = fork();
 		if (child == 0)
 		{
