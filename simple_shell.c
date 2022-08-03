@@ -19,6 +19,11 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		if (getline(&input, &n, stdin) == -1)
 			break;
 		tok = strtok(input, " \t\n\r");
+		if (_strcmp(input, "exit") == 0)
+		{
+			free(input);
+			return (0);
+		}
 		for (i = 0; i < 1024 && tok != NULL; i++)
 		{
 			buf[i] = tok;
@@ -31,11 +36,11 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			free(input);
 			return (0);
 		}
-		if (_strcmp(input, "exit") == 0)
+/**		if (_strcmp(input, "exit") == 0)
 		{
 			free(input);
-			return (-1);
-		}
+			return (0);
+		}*/
 		if (_strcmp(input, "env") == 0)
 		{
 			for (e = 0; env[e] != NULL; e++)
