@@ -2,17 +2,18 @@
 /**
 * main - simple shell
 * @ac: unused
+* @av: void
 * @env: unused
 * Return: 0
 */
-int main(__attribute__((unused)) int ac, char **env)
+int main(__attribute__((unused)) int ac, char **av, char **env)
 {
-	char **av(void);
 	char *input = NULL, *buf[1024], *tok;
-	size_t i, n = 0;
+	size_t e, i, n = 0;
 	int status = 0;
 	int child;
 
+	(void) av;
 	while (1)
 	{
 		if (getline(&input, &n, stdin) == -1)
@@ -29,6 +30,19 @@ int main(__attribute__((unused)) int ac, char **env)
 			free(buf[0]);
 			free(input);
 			return (0);
+		}
+		if (_strcmp(input, "exit") == 0)
+		{
+			free(input);
+			return (0);
+		}
+		if (_strcmp(input, "env") == 0)
+		{
+			for (e = 0; env[e] != NULL; e++)
+			{
+				printf("%s\n", env[e]);
+			}
+			continue;
 		}
 		child = fork();
 		if (child == 0)
