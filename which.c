@@ -28,7 +28,6 @@ char *_which(char *str)
         {
 			free(pathdup);
             free(fullpath);
-			printf("%s\n", path);
 			return (path);
         }
 		else
