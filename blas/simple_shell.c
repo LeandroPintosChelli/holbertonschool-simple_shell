@@ -14,7 +14,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	size_t i, n = 0;
 	int status = 0;
 	struct stat file;
-	void (*builtin)(char **);
+	void (*builtin)(char **, char *);
 
 	while (1)
 	{
@@ -34,7 +34,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		builtin = check_builtin(buf[0]);
 		if (builtin != NULL)
 		{
-			(*builtin)(env);
+			(*builtin)(env, input);
 			continue;
 		}
 		path = _which(buf[0]);
