@@ -34,7 +34,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		if (_strcmp(input, "exit") == 0)
 		{
 			free(input);
-			return (0);
+			return (i);
 		}
 		if (_strcmp(input, "env") == 0)
 		{
