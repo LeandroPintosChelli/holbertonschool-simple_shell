@@ -9,7 +9,7 @@
 int main(__attribute__((unused)) int ac, char **av, char **env)
 {
 	char *input = NULL, *buf[1024], *tok;
-	size_t e, i = 0, n = 0;
+	size_t e = 0, i = 0, n = 0;
 	int status = 0;
 	int child;
 
@@ -19,6 +19,8 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		if (getline(&input, &n, stdin) == -1)
 			break;
 		tok = strtok(input, " \t\n\r");
+		if (!tok)
+			break;
 		if (_strcmp(tok, "exit") == 0)
 		{
 			free(input);
