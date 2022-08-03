@@ -1,41 +1,56 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#include "main.h"
+/**
+* main - simple shell
+* @ac: Number of arguments passed to main.
+* @av: Array of string arguments.
+* @env: Enviroment variables.
+*
+* Return: Always 0.
+*/
 
 int main(__attribute__((unused)) int ac, char **av, char **env)
 {
-	char *input = 0;
-	size_t n = 0;
-	int status;
+	char *input = NULL, *buf[1024], *tok, *path = NULL;
+	size_t i, n = 0;
+	int status = 0;
 	struct stat file;
+	void (*builtin)(char **, char *);
 
 	while (1)
 	{
-		printf("#cisfun$ ");
+		if (isatty(STDIN_FILENO) == 1)
+			write(1, "$ ", 2);
 		if (getline(&input, &n, stdin) == -1)
-		{
-			free(input);
 			break;
-		}
-		if (strcmp(input, "\n") == 0)
+		tok = strtok(input, " \t\n\r");
+		if (tok == NULL)
 			continue;
-		input = strtok(input, "\n");
-		if (input && stat(input, &file) == 0)
+		for (i = 0; i < 1024 && tok != NULL; i++)
 		{
-			if (fork() == 0)
-				execve(input, av, env);
+			buf[i] = tok;
+			tok = strtok(NULL, " \t\n\r");
 		}
+		buf[i] = NULL;
+		builtin = check_builtin(buf[0]);
+		if (builtin != NULL)
+		{
+			(*builtin)(env, input);
+			continue;
+		}
+		path = _which(buf[0]);
+		if (path == NULL)
+		{
+			perror("");
+			continue;
+		}
+		buf[0] = path;
+		if (fork() == 0)
+			execve(buf[0], buf, env);
 		else
-		{
-			printf("%s: No such file or directory\n", av[0]);
-			continue;
-		}
-		wait(&status);
+			wait(&status);
+		if (path && path != input)
+			free(path);
 	}
-
+	free(input);
 	return (0);
 }
