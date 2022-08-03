@@ -9,7 +9,7 @@
 int main(__attribute__((unused)) int ac, char **av, char **env)
 {
 	char *input = NULL, *buf[1024], *tok;
-	size_t e, i, n = 0;
+	size_t e = 0, i = 0, n = 0;
 	int status = 0;
 	int child;
 
@@ -19,6 +19,13 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		if (getline(&input, &n, stdin) == -1)
 			break;
 		tok = strtok(input, " \t\n\r");
+		if (!tok)
+			break;
+		if (_strcmp(tok, "exit") == 0)
+		{
+			free(input);
+			return (i);
+		}
 		for (i = 0; i < 1024 && tok != NULL; i++)
 		{
 			buf[i] = tok;
@@ -31,11 +38,6 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			free(input);
 			return (0);
 		}
-		if (_strcmp(input, "exit") == 0)
-		{
-			free(input);
-			return (0);
-		}
 		if (_strcmp(input, "env") == 0)
 		{
 			for (e = 0; env[e] != NULL; e++)
@@ -44,6 +46,8 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			}
 			continue;
 		}
+		if (pathver(buf[0]) == -1)
+			buf[0] = _which(buf[0]);
 		child = fork();
 		if (child == 0)
 		{
@@ -55,6 +59,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		}
 		else
 			wait(&status);
+	free(buf[0]);
 	}
 	free(input);
 	return (0);
