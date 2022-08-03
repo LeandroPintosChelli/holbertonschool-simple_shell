@@ -19,7 +19,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		if (getline(&input, &n, stdin) == -1)
 			break;
 		tok = strtok(input, " \t\n\r");
-		if (_strcmp(input, "exit") == 0)
+		if (_strcmp(tok, "exit") == 0)
 		{
 			free(input);
 			return (i);
