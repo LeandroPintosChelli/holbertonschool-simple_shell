@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <stddef.h>
 
-int main(__attribute__((unused)) int ac, char **env);
+int main(__attribute__((unused)) int ac, char **av, char **env);
 void _env(char **env);
 int _putchar(char c);
 int _strcmp(char *s1, char *s2);
