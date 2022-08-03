@@ -31,10 +31,10 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			free(input);
 			return (0);
 		}
-		if (!_strcmp(input, "exit"))
+		if (_strcmp(input, "exit") == 0)
 		{
 			free(input);
-			return (i);
+			return (-1);
 		}
 		if (_strcmp(input, "env") == 0)
 		{
