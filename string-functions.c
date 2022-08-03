@@ -24,9 +24,8 @@ int _strlen(char *s)
 */
 char *str_concat(char *s1, char *s2)
 {
-	int i = 0;
-	char *c;
-	int a, b;
+	int i = 0, a = 0, b = 0;
+	char *c = NULL;
 
 	if (s1 == NULL)
 		s1 = "";
@@ -34,8 +33,8 @@ char *str_concat(char *s1, char *s2)
 		s2 = "";
 	a = _strlen(s1);
 	b = _strlen(s2);
-	c = (char *)malloc(sizeof(char) * ((a + b) + 1));
-	if (c == NULL)
+	c = (char *)malloc(sizeof(char) * ((a + b)) + 1);
+	if (!c)
 		return (NULL);
 	for (i = 0; i < a; i++)
 	{
@@ -45,6 +44,7 @@ char *str_concat(char *s1, char *s2)
 	{
 		c[i + a] = s2[i];
 	}
+	c[i + a] = '\0';
 	return (c);
 }
 
@@ -89,8 +89,8 @@ void _puts(char *str)
 */
 char *_strdup(char *str)
 {
-	int s, i;
-	char *c;
+	int s = 0, i = 0;
+	char *c = NULL;
 
 	if (str == NULL)
 	{

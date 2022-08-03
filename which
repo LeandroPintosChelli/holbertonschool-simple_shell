@@ -13,7 +13,7 @@
 */
 char *_which(char *str)
 {
-    char *path = NULL, *pathdup = NULL, *token = NULL, *fullpath = NULL;
+    char *path, *pathdup = NULL, *token = NULL, *fullpath = NULL;
     struct stat st;
 
     path = _getenv("PATH");
@@ -37,6 +37,8 @@ char *_which(char *str)
 			free(path);
 		}
 	}
+    free(path);
+	free(fullpath);
 	free(pathdup);
 	return (NULL);
 }
