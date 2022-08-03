@@ -9,7 +9,7 @@
 int main(__attribute__((unused)) int ac, char **av, char **env)
 {
 	char *input = NULL, *buf[1024], *tok;
-	size_t e, i, n = 0;
+	size_t e, i = 0, n = 0;
 	int status = 0;
 	int child;
 
