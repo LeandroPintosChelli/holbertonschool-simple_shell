@@ -22,7 +22,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		if (_strcmp(input, "exit") == 0)
 		{
 			free(input);
-			return (0);
+			return (i);
 		}
 		for (i = 0; i < 1024 && tok != NULL; i++)
 		{
@@ -36,11 +36,6 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			free(input);
 			return (0);
 		}
-/**		if (_strcmp(input, "exit") == 0)
-		{
-			free(input);
-			return (0);
-		}*/
 		if (_strcmp(input, "env") == 0)
 		{
 			for (e = 0; env[e] != NULL; e++)
