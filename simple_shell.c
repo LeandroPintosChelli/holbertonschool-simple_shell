@@ -31,7 +31,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			free(input);
 			return (0);
 		}
-		if (_strcmp(input, "exit") == 0)
+		if (!_strcmp(input, "exit"))
 		{
 			free(input);
 			return (i);
