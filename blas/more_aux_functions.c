@@ -48,13 +48,18 @@ int _putchar(char c)
 * @env: pointer to a char
 * Return: void
 */
-void p_error(char *cmd, char *program, int *status)
+void _env(__attribute__((unused)) char **env, __attribute__((unused)) char *freeme)
 {
-	write(2, program, _strlen(program));
-	write(2, ": 1: ", 5);
-	write(2, cmd, _strlen(cmd));
-	write(2, ": not found\n", 12);
-	*status = 127;
+	/*size_t len;
+
+	for (; *env;)
+	{
+		len = strlen(*env);
+		write(1, *env, len);
+		_putchar('\n');
+		*env = *env + len;
+	}*/
+	printf("envioo\n");
 }
 
 /**
@@ -65,10 +70,7 @@ void p_error(char *cmd, char *program, int *status)
 void _salir(__attribute__((unused)) char **env, char *freeme)
 {
 	free(freeme);
-	if (status == 0)
-		exit(0);
-	else
-		exit(2);
+	exit(2);
 }
 
 /**
