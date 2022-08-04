@@ -8,12 +8,11 @@
 * Return: Always 0.
 */
 
-int main(__attribute__((unused)) int ac, char **av, char **env)
+int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char **env)
 {
 	char *input = NULL, *buf[1024], *tok, *path = NULL;
 	size_t i, n = 0;
 	int status = 0;
-	struct stat file;
 	void (*builtin)(char **, char *);
 
 	while (1)
