@@ -48,7 +48,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		else
 		{
 			wait(&status);
-			exit_code = WEXITSTATUS(status);		
+			exit_code = WEXITSTATUS(status);
 		}
 		if (cmd)
 			free(path);

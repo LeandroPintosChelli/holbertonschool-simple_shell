@@ -20,13 +20,9 @@ int _which(char *str, char **res)
 			*res = str;
 			return (0);
 		}
-		else
-		{
-			*res = NULL;
-			return (0);
-		}
+		*res = NULL;
+		return (0);
 	}
-
 	path = _getenv("PATH");
 	pathdup = _strdup(path);
 	token = strtok(pathdup, ":");

@@ -3,7 +3,7 @@
 /**
  * check_builtin - Checks for builtin function.
  * @str: String input.
- * 
+ *
  * Return: Pointer to built-in function or NULL if not found.
  */
 
