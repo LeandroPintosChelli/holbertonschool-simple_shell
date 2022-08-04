@@ -61,6 +61,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		}
 		else
 			wait(&status);
+		free(buf[0]);
 	}
 	free(input);
 	return (0);
