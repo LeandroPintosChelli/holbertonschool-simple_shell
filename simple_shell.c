@@ -50,11 +50,17 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		{
 			buf[0] = _which(buf[0]);
 		}
+		if (!buf[0])
+		{
+			free(buf[0]);
+			free(input);
+			return (0);
+		}
 		child = fork();
 		if (child == 0)
 		{
 			if (execve(buf[0], buf, env) == -1)
-			{
+			
 				perror("");
 				return (0);
 			}
