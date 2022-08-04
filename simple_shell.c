@@ -60,7 +60,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		if (child == 0)
 		{
 			if (execve(buf[0], buf, env) == -1)
-			
+			{
 				perror("");
 				return (0);
 			}
