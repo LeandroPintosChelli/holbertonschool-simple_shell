@@ -8,12 +8,11 @@
 * Return: Always 0.
 */
 
-int main(__attribute__((unused)) int ac, char **av, char **env)
+int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char **env)
 {
 	char *input = NULL, *buf[1024], *tok, *path = NULL;
 	size_t i, n = 0;
-	int status = 0;
-	struct stat file;
+	int status = 0, cmd = 0;
 	void (*builtin)(char **, char *);
 
 	while (1)
@@ -37,18 +36,23 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 			(*builtin)(env, input);
 			continue;
 		}
-		path = _which(buf[0]);
+		cmd = _which(buf[0], &path);
 		if (path == NULL)
 		{
-			perror("");
+			write(2, "./hsh: 1", 10);
+			write(2, buf[0], 10);
+			write(2, " not found", 10);
 			continue;
 		}
 		buf[0] = path;
 		if (fork() == 0)
-			execve(buf[0], buf, env);
+		{
+			if (execve(buf[0], buf, env) == -1)
+				perror("");
+		}
 		else
 			wait(&status);
-		if (path && path != input)
+		if (cmd)
 			free(path);
 	}
 	free(input);

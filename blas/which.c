@@ -3,11 +3,12 @@
 /**
 * _which - Searches for path to file input.
 * @str: String input.
+* @res: Pointer to char pointer to store result.
 *
-* Return: Pointer to full path for file or NULL if not found.
+* Return: 1 if memory was allocated and 0 otherwise.
 */
 
-char *_which(char *str)
+int _which(char *str, char **res)
 {
 	char *path = NULL, *pathdup = NULL, *token = NULL, *fullpath = NULL;
 	struct stat st;
@@ -15,9 +16,15 @@ char *_which(char *str)
 	if (strchr(str, '/') != NULL)
 	{
 		if (stat(str, &st) == 0)
-			return (str);
+		{
+			*res = str;
+			return (0);
+		}
 		else
-			return (NULL);
+		{
+			*res = NULL;
+			return (0);
+		}
 	}
 
 	path = _getenv("PATH");
@@ -32,7 +39,8 @@ char *_which(char *str)
 		{
 			free(pathdup);
 			free(fullpath);
-			return (path);
+			*res = path;
+			return (1);
 		}
 		else
 		{
@@ -42,5 +50,6 @@ char *_which(char *str)
 		}
 	}
 	free(pathdup);
-	return (NULL);
+	*res = NULL;
+	return (0);
 }
