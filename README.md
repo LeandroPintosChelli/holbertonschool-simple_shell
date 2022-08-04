@@ -29,6 +29,7 @@ Bash is the default shell on most modern implementations of Unix.
 To install and execute in your own terminal:
 
 `git clone https://github.com/LeandroPintosChelli/holbertonschool-simple_shell.git`
+
 `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
 
 ## To test with Valgrind, you can use this metod and flags:
@@ -80,6 +81,18 @@ Input:
 
 ```
 
+## In files string-functions.c, more_auf_functions.c and which.c there are functions we use as help us:
+
+```
+_getenv: searches the environment variable dynamically.
+_putchar: writes a character to stdout.
+_strlen: calculates the string lenght.
+str_concat: concatenate two strings.
+_strcmp: compare two strings.
+_strdup: duplicate a string.
+_which: search a path.
+_strchr: locates a character in a string.
+```
 # Flowchart
 
 

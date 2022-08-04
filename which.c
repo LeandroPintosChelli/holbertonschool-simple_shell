@@ -47,10 +47,10 @@ char *_which(char *str)
 */
 int pathver(char *str)
 {
-	if(_strchr(str, '/') == NULL)
-		return(-1);
+	if (_strchr(str, '/') == NULL)
+		return (-1);
 	else
-		return(0);
+		return (0);
 }
 /**
 * _strchr - locates a character in a string
