@@ -17,7 +17,15 @@ Bash is the default shell on most modern implementations of Unix.
 - Compile mode: gcc Wall -Werror -Wextra -pedantic -std=gnu89 -g
 - Style rules: [Betty style](https://github.com/holbertonschool/Betty/wiki)
 
-## Built-in Commands implemented:
+## What is the PATH
+
+The PATH variable is in summary a list of directories that your computer looks through to find a requested an executable command or built-ins.
+
+## What are built-ins:
+
+A shell built-in is a command or a function called, that is executed directly in the shell itself.
+
+### Built-ins Commands implemented:
 
 | Command    | Output          |
 |------------|-----------------|
