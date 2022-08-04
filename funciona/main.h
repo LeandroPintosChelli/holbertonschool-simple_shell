@@ -10,7 +10,7 @@
 #include <stddef.h>
 
 /**
- * built - Structure for built-in functions.
+ * struct built - Structure for built-in functions.
  * @name: Name of function.
  * @f: Pointer to function.
  */

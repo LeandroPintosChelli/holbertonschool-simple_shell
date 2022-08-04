@@ -3,14 +3,13 @@
 /**
  * check_builtin - Checks for builtin function.
  * @str: String input.
- * 
  * Return: Pointer to built-in function or NULL if not found.
  */
 
 void (*check_builtin(char *str))(char *, int)
 {
 	built_t arr[] = {
-		{"exit", _salir}	
+		{"exit", _salir}
 	};
 	int i;
 
