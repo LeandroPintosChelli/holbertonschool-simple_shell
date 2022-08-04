@@ -48,7 +48,7 @@ int _putchar(char c)
 * @env: pointer to a char
 * Return: void
 */
-void _env(char **env, char *freeme)
+void _env(__attribute__((unused)) char **env, __attribute__((unused)) char *freeme)
 {
 	/*size_t len;
 
@@ -70,7 +70,7 @@ void _env(char **env, char *freeme)
 void _salir(__attribute__((unused)) char **env, char *freeme)
 {
 	free(freeme);
-	exit(0);
+	exit(2);
 }
 
 /**
@@ -89,4 +89,5 @@ char *_strchr(char *str, int c)
 			return (str);
 		str++;
 	}
+	return (NULL);
 }
