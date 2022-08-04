@@ -10,14 +10,13 @@
 void (*check_builtin(char *str))(char **, char *)
 {
 	built_t arr[] = {
-		{"blas", _env},
 		{"exit", _salir}	
 	};
 	int i;
 
 	if (!str)
 		return (NULL);
-	for (i = 0; i < 2; i++)
+	for (i = 0; i < 1; i++)
 	{
 		if (_strcmp(str, arr[i].name) == 0)
 			return (arr[i].f);
