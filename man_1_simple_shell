@@ -1,0 +1,38 @@
+.TH SIMPLE_SHELL
+.SH NAME
+Simple_Shell, command lenguage interpreter
+.SH SYNOPSIS
+#include <stdio.h>
+
+#include <string.h>
+
+#include <stdlib.h>
+
+#include <unistd.h>
+
+#include <sys/wait.h>
+
+#include <sys/types.h>
+
+#include <sys/stat.h>
+
+#include <stddef.h>
+
+int main(int ac, char **av, char **env)
+.SH DESCRIPTION
+The Simple_Shell is a program that interprete commands typed by a user and exceute them, can be commands, executable files or built-ins.
+.PP
+Simple_Shell can execute:
+.PP
+env - prints a list of the current environment variables.
+
+exit - exit the Simple_Shell.
+
+commands with and without flags - Example: "pwd" "ls -la"
+
+commands with path - Example: "/bin/pwd" "/bin/ls -l"
+
+.SH RETURN VALUE
+Return 0 on success, otherwise another number.
+.SH AUTHORS
+  Written by Blas Hernandez, Leandro Pintos and Santiago Fernandez.
