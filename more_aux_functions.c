@@ -62,13 +62,13 @@ void p_error(char *cmd, char *program, int *status)
  * @env: Enviroment variables.
  */
 
-void _salir(__attribute__((unused)) char **env, char *freeme)
+void _salir(char *freeme, int status)
 {
 	free(freeme);
 	if (status == 0)
-		exit(0);
+		exit(status);
 	else
-		exit(2);
+		exit(status);
 }
 
 /**

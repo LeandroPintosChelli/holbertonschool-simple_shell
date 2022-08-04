@@ -8,11 +8,11 @@
 * Return: Always 0.
 */
 
-int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char **env)
+int main(__attribute__((unused)) int ac, char **av, char **env)
 {
 	char *input = NULL, *buf[1024], *tok, *path = NULL;
 	size_t i, n = 0;
-	int status = 0, cmd = 0;
+	int status = 0, cmd = 0, exit_code = 0;
 	void (*builtin)(char **, char *);
 
 	while (1)
@@ -39,9 +39,7 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 		cmd = _which(buf[0], &path);
 		if (path == NULL)
 		{
-			write(2, "./hsh: 1", 10);
-			write(2, buf[0], 10);
-			write(2, " not found", 10);
+			p_error(buf[0], av[0], &exit_code);
 			continue;
 		}
 		buf[0] = path;
@@ -56,5 +54,5 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 			free(path);
 	}
 	free(input);
-	return (0);
+	return (exit_code);
 }

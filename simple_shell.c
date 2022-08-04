@@ -13,7 +13,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	char *input = NULL, *buf[1024], *tok, *path = NULL;
 	size_t i, n = 0;
 	int status = 0, cmd = 0, exit_code = 0;
-	void (*builtin)(char **, char *);
+	void (*builtin)(char *, int);
 
 	while (1)
 	{
@@ -33,7 +33,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		builtin = check_builtin(buf[0]);
 		if (builtin != NULL)
 		{
-			(*builtin)(env, input);
+			(*builtin)(input, exit_code);
 			continue;
 		}
 		cmd = _which(buf[0], &path);
@@ -44,12 +44,12 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		}
 		buf[0] = path;
 		if (fork() == 0)
-		{
-			if (execve(buf[0], buf, env) == -1)
-				perror("");
-		}
+			execve(buf[0], buf, env);
 		else
+		{
 			wait(&status);
+			exit_code = WEXITSTATUS(status);		
+		}
 		if (cmd)
 			free(path);
 	}

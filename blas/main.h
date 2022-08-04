@@ -18,12 +18,12 @@
 typedef struct built
 {
 	char *name;
-	void (*f)(char *, int);
+	void (*f)(char **, char *);
 } built_t;
 
-void (*check_builtin(char *))(char *, int);
+void (*check_builtin(char *))(char **, char *);
 void p_error(char *, char *, int *);
-void _salir(char *, int);
+void _salir(char **, char *);
 int _putchar(char c);
 int _strcmp(char *s1, char *s2);
 char *_getenv(const char *name);

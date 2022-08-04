@@ -7,7 +7,7 @@
  * Return: Pointer to built-in function or NULL if not found.
  */
 
-void (*check_builtin(char *str))(char **, char *)
+void (*check_builtin(char *str))(char *, int)
 {
 	built_t arr[] = {
 		{"exit", _salir}	
