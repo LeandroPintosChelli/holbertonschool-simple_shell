@@ -1,19 +1,20 @@
 #include "main.h"
 /**
 * main - simple shell
-* @ac: unused
-* @av: void
-* @env: unused
-* Return: 0
+* @ac: Number of arguments passed to main.
+* @av: Array of string arguments.
+* @env: Enviroment variables.
+*
+* Return: Always 0.
 */
+
 int main(__attribute__((unused)) int ac, char **av, char **env)
 {
-	char *input = NULL, *buf[1024], *tok;
-	size_t e = 0, i = 0, n = 0;
-	int status = 0;
-	int child;
+	char *input = NULL, *buf[1024], *tok, *path = NULL;
+	size_t i, n = 0;
+	int status = 0, cmd = 0, exit_code = 0;
+	void (*builtin)(char *, int);
 
-	(void) av;
 	while (1)
 	{
 		if (isatty(STDIN_FILENO) == 1)
@@ -21,48 +22,37 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		if (getline(&input, &n, stdin) == -1)
 			break;
 		tok = strtok(input, " \t\n\r");
-		if (tok && _strcmp(tok, "exit") == 0)
-		{
-			free(input);
-			return (i);
-		}
+		if (tok == NULL)
+			continue;
 		for (i = 0; i < 1024 && tok != NULL; i++)
 		{
 			buf[i] = tok;
 			tok = strtok(NULL, " \t\n\r");
 		}
 		buf[i] = NULL;
-		if (buf[0] == NULL)
+		builtin = check_builtin(buf[0]);
+		if (builtin != NULL)
 		{
-			free(input);
+			(*builtin)(input, exit_code);
 			continue;
 		}
-		if (_strcmp(input, "env") == 0)
+		cmd = _which(buf[0], &path);
+		if (path == NULL)
 		{
-			for (e = 0; env[e] != NULL; e++)
-			{
-				printf("%s\n", env[e]);
-			}
+			p_error(buf[0], av[0], &exit_code);
 			continue;
 		}
-		if (pathver(buf[0]) == -1)
+		buf[0] = path;
+		if (fork() == 0)
+			execve(buf[0], buf, env);
+		else
 		{
-			buf[0] = _which(buf[0]);
+			wait(&status);
+			exit_code = WEXITSTATUS(status);		
 		}
-		if (buf[0] && stat())
-		{
-			child = fork();
-			if (child == 0)
-			{
-				if (execve(buf[0], buf, env) == -1)
-					perror("");
-			}
-			else
-				wait(&status);
-		}
-		if (buf[0] != input)
-			free(buf[0]);
+		if (cmd)
+			free(path);
 	}
 	free(input);
-	return (0);
+	return (exit_code);
 }

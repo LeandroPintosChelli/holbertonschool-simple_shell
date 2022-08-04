@@ -3,8 +3,10 @@
 /**
 * _getenv - function to do getenv
 * @name: pointer
+*
 * Return: NULL
 */
+
 char *_getenv(const char *name)
 {
 	char *path;
@@ -13,41 +15,31 @@ char *_getenv(const char *name)
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-	status = 1;
-	for (j = 0; environ[i][j] != '='; j++)
-	{
-		if (name[j] != environ[i][j])
+		status = 1;
+		for (j = 0; environ[i][j] != '='; j++)
 		{
-			status = 0;
-			break;
+			if (name[j] != environ[i][j])
+			{
+				status = 0;
+				break;
+			}
 		}
-	}
-	if (status)
-	{
-		path = _strdup(&environ[i][j + 1]);
-		return (path);
-	}
+		if (status)
+		{
+			path = _strdup(&environ[i][j + 1]);
+			return (path);
+		}
 	}
 	return (NULL);
 }
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
-* _env - print environment
-* @env: pointer to a char
-* Return: void
+* p_error - Print error to stderr.
+* @cmd: Command name.
+* @program: Executable name.
+* @status: Pointer to integer.
 */
+
 void p_error(char *cmd, char *program, int *status)
 {
 	write(2, program, _strlen(program));
@@ -58,8 +50,9 @@ void p_error(char *cmd, char *program, int *status)
 }
 
 /**
- * _exit - Exit built-in function.
- * @env: Enviroment variables.
+ * _salir - Exit built-in function.
+ * @freeme: Buf to free before exit.
+ * @status: Exit code.
  */
 
 void _salir(char *freeme, int status)
@@ -88,4 +81,21 @@ char *_strchr(char *str, int c)
 		str++;
 	}
 	return (NULL);
+}
+
+/**
+ * _env - Prints enviroment variables.
+ * @buf: Buffer not used.
+ * @stat: Status code not used.
+ */
+
+void _env(__attribute__((unused)) char *buf, __attribute__((unused)) int stat)
+{
+	int i;
+
+	for (i = 0; environ && environ[i]; i++)
+	{
+		write(1, environ[i], _strlen(environ[i]));
+		write(1, "\n", 1);
+	}
 }

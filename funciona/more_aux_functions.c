@@ -48,15 +48,44 @@ int _putchar(char c)
 * @env: pointer to a char
 * Return: void
 */
-void _env(char **env)
+void p_error(char *cmd, char *program, int *status)
 {
-	size_t len;
+	write(2, program, _strlen(program));
+	write(2, ": 1: ", 5);
+	write(2, cmd, _strlen(cmd));
+	write(2, ": not found\n", 12);
+	*status = 127;
+}
 
-	for (; *env;)
+/**
+ * _exit - Exit built-in function.
+ * @env: Enviroment variables.
+ */
+
+void _salir(char *freeme, int status)
+{
+	free(freeme);
+	if (status == 0)
+		exit(status);
+	else
+		exit(status);
+}
+
+/**
+ * _strchr - Searches char in string.
+ * @str: Pointer to string of chars.
+ * @c: Char to search.
+ *
+ * Return: Pointer to first occurance of c in str or NULL if not found.
+ */
+
+char *_strchr(char *str, int c)
+{
+	while (str && *str)
 	{
-		len = strlen(*env);
-		write(1, *env, len);
-		_putchar('\n');
-		*env = *env + 1;
+		if (*str == c)
+			return (str);
+		str++;
 	}
+	return (NULL);
 }

@@ -1,4 +1,18 @@
 #include "main.h"
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
+
 /**
  * _strlen - string lenght
  * @s: function that returns the length of a string.
@@ -65,24 +79,6 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * _puts - check the code
- * @str: function that returns the length of a string.
- * Return: Always 0.
- */
-void _puts(char *str)
-{
-	int i = 0;
-
-	while (*str != '\0')
-	{
-		_putchar(*str);
-		i++;
-		str++;
-	}
-	_putchar('\n');
-}
-
-/**
 * _strdup - check code
 * @str: duplicate string
 * Return: Always 0
@@ -111,3 +107,5 @@ char *_strdup(char *str)
 	c[i] = '\0';
 	return (c);
 }
+
+

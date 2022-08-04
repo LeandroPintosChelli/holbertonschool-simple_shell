@@ -24,6 +24,7 @@ typedef struct built
 void (*check_builtin(char *))(char *, int);
 void p_error(char *, char *, int *);
 void _salir(char *, int);
+void _env(char *, int);
 int _putchar(char c);
 int _strcmp(char *s1, char *s2);
 char *_getenv(const char *name);
