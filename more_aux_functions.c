@@ -70,7 +70,7 @@ void _env(__attribute__((unused)) char **env, __attribute__((unused)) char *free
 void _salir(__attribute__((unused)) char **env, char *freeme)
 {
 	free(freeme);
-	exit(0);
+	exit(2);
 }
 
 /**
