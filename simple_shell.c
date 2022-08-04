@@ -16,6 +16,8 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 	(void) av;
 	while (1)
 	{
+		if (isatty(STDIN_FILENO) == 1)
+			write(1, "$ ", 2);
 		if (getline(&input, &n, stdin) == -1)
 			break;
 		tok = strtok(input, " \t\n\r");
@@ -61,6 +63,8 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		}
 		else
 			wait(&status);
+		if (buf[0] != input)
+			free(buf[0]);
 	}
 	free(input);
 	return (0);
