@@ -31,7 +31,7 @@ extern char **environ;
 int _strlen(char *s);
 char *str_concat(char *s1, char *s2);
 char *_strdup(char *str);
-char *_which(char *);
+int _which(char *, char **);
 char *_strchr(char *, int);
 
 

@@ -12,7 +12,7 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 {
 	char *input = NULL, *buf[1024], *tok, *path = NULL;
 	size_t i, n = 0;
-	int status = 0;
+	int status = 0, cmd = 0;
 	void (*builtin)(char **, char *);
 
 	while (1)
@@ -36,7 +36,7 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 			(*builtin)(env, input);
 			continue;
 		}
-		path = _which(buf[0]);
+		cmd = _which(buf[0], &path);
 		if (path == NULL)
 		{
 			perror("");
@@ -44,10 +44,13 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 		}
 		buf[0] = path;
 		if (fork() == 0)
-			execve(buf[0], buf, env);
+		{
+			if (execve(buf[0], buf, env) == -1)
+				perror("");
+		}
 		else
 			wait(&status);
-		if (path && path != input)
+		if (cmd)
 			free(path);
 	}
 	free(input);
