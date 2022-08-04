@@ -102,7 +102,7 @@ _which: search a path.
 _strchr: locates a character in a string.
 ```
 # Flowchart
-
+![Flowcharts](https://user-images.githubusercontent.com/68179343/182882207-5b02a521-218d-4baa-a97e-b8734ab4c086.png)
 
 
 Created by [Leandro Pintos](https://github.com/LeandroPintosChelli) & [Santiago Fernández](https://github.com/TotiFlame) & [Blas Hernandez](https://github.com/blashernandez98)
