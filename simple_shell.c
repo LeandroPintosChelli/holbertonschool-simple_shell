@@ -12,7 +12,7 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 {
 	char *input = NULL, *buf[1024], *tok, *path = NULL;
 	size_t i, n = 0;
-	int status = 0, cmd = 0;
+	int status = 0, cmd = 0, exit_code = 0;
 	void (*builtin)(char **, char *);
 
 	while (1)
@@ -39,7 +39,10 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 		cmd = _which(buf[0], &path);
 		if (path == NULL)
 		{
-			perror("");
+			write(2, "./a.out: 1: ", 12);
+			write(2, buf[0], _strlen(buf[0]));
+			write(2, ": not found\n", 12);
+			exit_code = 127;
 			continue;
 		}
 		buf[0] = path;
@@ -54,5 +57,5 @@ int main(__attribute__((unused)) int ac, __attribute__((unused)) char **av, char
 			free(path);
 	}
 	free(input);
-	return (0);
+	return (exit_code);
 }
