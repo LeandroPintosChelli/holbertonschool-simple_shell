@@ -11,7 +11,7 @@
 int main(__attribute__((unused)) int ac, char **av, char **env)
 {
 	char *input = NULL, *buf[1024], *tok, *path = NULL;
-	size_t i, n = 0;
+	size_t n = 0;
 	int status = 0, cmd = 0, exit_code = 0;
 	void (*builtin)(char *, int);
 
