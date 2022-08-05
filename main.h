@@ -21,6 +21,7 @@ typedef struct built
 	void (*f)(char *, int);
 } built_t;
 
+void fill_buff(char **, char *);
 void (*check_builtin(char *))(char *, int);
 void p_error(char *, char *, int *);
 void _salir(char *, int);

@@ -24,12 +24,7 @@ int main(__attribute__((unused)) int ac, char **av, char **env)
 		tok = strtok(input, " \t\n\r");
 		if (tok == NULL)
 			continue;
-		for (i = 0; i < 1024 && tok != NULL; i++)
-		{
-			buf[i] = tok;
-			tok = strtok(NULL, " \t\n\r");
-		}
-		buf[i] = NULL;
+		fill_buff(buf, tok);
 		builtin = check_builtin(buf[0]);
 		if (builtin != NULL)
 		{
