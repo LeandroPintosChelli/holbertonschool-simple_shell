@@ -3,7 +3,7 @@
 /**
  * fill_buff - Fills array of strings with tokens.
  * @buf: Pointer to arr of strings.
- *
+ * @tok: First token.
  */
 
 void fill_buff(char **buf, char *tok)
