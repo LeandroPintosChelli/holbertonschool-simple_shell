@@ -87,7 +87,7 @@ Input:
 Output:
 ```
 
-AUTHORS  check-builtin.c  main.h  man_1_simple_shell  more_aux_functions.c  README.md  simple_shell.c  string-functions.c  tests  which.c
+$ AUTHORS  check-builtin.c  main.h  man_1_simple_shell  more_aux_functions.c  README.md  simple_shell.c  string-functions.c  tests  which.c
 
 ```
 env: The env command allows you to display your current environment.
@@ -115,7 +115,7 @@ _=./a.out
 
 ```
 
-## In files string-functions.c, more_auf_functions.c and which.c there are functions we use as help us:
+## In files string-functions.c, more_aux_functions.c and which.c there are functions we use as help us:
 
 ```
 _getenv: searches the environment variable dynamically.
