@@ -1,6 +1,6 @@
 # Simple_shell
 
-Welcome. This project consists in replicate how a the Linux Shell works, in a simpler way.
+Welcome. This project consists in replicating how a the Linux Shell works, in a simpler way.
 
 ## Introduction.
 In the 1960s and 1970s Dennis Ritchie and Ken Thompson invented Unix.
@@ -19,11 +19,11 @@ Bash is the default shell on most modern implementations of Unix.
 
 ## What is the PATH
 
-The PATH variable is in summary a list of directories that your computer looks through to find a requested an executable command or built-ins.
+The PATH variable is in summary a list of directories that your computer looks through to find the requested executable command or built-in function.
 
 ## What are built-ins:
 
-A shell built-in is a command or a function called, that is executed directly in the shell itself.
+A shell built-in is a command or a function, that is executed directly in the shell itself.
 
 ### Built-ins Commands implemented:
 
